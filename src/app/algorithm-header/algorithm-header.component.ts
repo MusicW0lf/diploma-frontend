@@ -8,14 +8,21 @@ import { Component } from '@angular/core';
   imports: [CommonModule]
 })
 export class AlgorithmHeaderComponent {
-  dropdownVisible = false;
   isAuthenticated = true; // Placeholder for actual authentication state
   usernamePlaceholder = 'Guest'; // Placeholder for username
   // CHANGE TO SETTER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  toggleDropdown(visible: boolean): void {
-    this.dropdownVisible = visible;
-  }
 
+  dropdownVisible = false;
+  hideTimeout: any;
+  showDropdown(): void {
+    clearTimeout(this.hideTimeout);
+    this.dropdownVisible = true;
+  }
+  hideDropdown(): void {
+    this.hideTimeout = setTimeout(() => {
+      this.dropdownVisible = false;
+    }, 150);
+  }
   // You would later update `isAuthenticated` and `usernamePlaceholder`
   // based on the user's actual authentication state.
 }

@@ -7,6 +7,7 @@ footer {
     justify-content: center;
     align-items: flex-start;
     position: relative; /* Залишається відносно body */
+    top: 40px;
     z-index: 2;
     border-top: 2px solid #fff;
     transition: margin-left 0.3s, width 0.3s; /* Додаємо перехід для ширини */

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-algorithm-footer',
@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./algorithm-footer.component.css'],
 })
 export class AlgorithmFooterComponent {
-
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
 }
