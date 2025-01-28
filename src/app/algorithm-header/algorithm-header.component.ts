@@ -11,8 +11,7 @@ export class AlgorithmHeaderComponent {
   dropdownVisible = false;
   isAuthenticated = true; // Placeholder for actual authentication state
   usernamePlaceholder = 'Guest'; // Placeholder for username
-  
-  // This method will toggle the visibility of the dropdown
+  // CHANGE TO SETTER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   toggleDropdown(visible: boolean): void {
     this.dropdownVisible = visible;
   }
