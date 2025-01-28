@@ -1,0 +1,48 @@
+.algorithm-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #000000;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    transition: 0.5s;
+  }
+
+  .algorithm-card:hover {
+    transform: scale(1.02);
+  }
+
+  .algorithm-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .algorithm-card h2 {
+    margin: 0;
+    font-size: 1.8em;
+    flex: 1;
+  }
+
+  .algorithm-card p {
+    margin: 50px;
+    font-size: 1em;
+    flex: 2;
+    text-align: center;
+  }
+
+  .view-more-btn {
+    padding: 10px 20px;
+    background-color: transparent;
+    border-color: #393939;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 150px;
+  }

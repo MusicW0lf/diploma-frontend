@@ -1,0 +1,12 @@
+<div class="algorithm-cards-container">
+    <app-algorithm-card 
+      *ngFor="let card of algorithmCards" 
+      [cardClass]="card.cardClass" 
+      [header]="card.header" 
+      [description]="card.description" 
+      [link]="card.link" 
+      [color1]="card.color1" 
+      [color2]="card.color2">
+    </app-algorithm-card>
+  </div>
+  

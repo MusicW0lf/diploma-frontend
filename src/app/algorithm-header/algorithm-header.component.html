@@ -1,0 +1,61 @@
+<div class="header-empty"></div>
+
+<header>
+  <!-- Application Link -->
+  <a class="header-cell" href="#" routerLink="/user-main">Algolibrary</a>
+  
+  <!-- Dropdown for Themes -->
+  <div class="dropdown">
+    <button class="header-button" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+      Themes
+    </button>
+    <div class="dropdown-content" id="themeDropdown" [ngStyle]="{display: dropdownVisible ? 'block' : 'none'}">
+      <a href="#" routerLink="/user-theme">Neural Network</a>
+      <a href="#" routerLink="/user-theme">Generative AI</a>
+      <a href="#" routerLink="/user-theme">Computer Vision</a>
+      <a href="#" routerLink="/user-theme">Cryptography</a>
+      <a href="#" routerLink="/user-theme">Theory of Games</a>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
+    <button class="search-button" type="submit">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+
+  <!-- Palette Icon -->
+  <a class="header-cell" style="width: 50px;">
+    <i class="fa-solid fa-palette"></i>
+  </a>
+
+  <!-- Subscription Link -->
+  <a class="header-cell" href="#" routerLink="/user-subscription">
+    <i class="fa-solid fa-feather"></i>&nbsp;Subscription
+  </a>
+
+  <!-- Laboratory Link -->
+  <a class="header-cell" href="#" routerLink="/user-laboratory">
+    <i class="fa-solid fa-flask"></i>&nbsp;Laboratory
+  </a>
+
+  <!-- Globe Icon -->
+  <a class="header-cell" style="width: 50px;">
+    <i class="fa-solid fa-globe"></i>
+  </a>
+
+  <!-- Conditional Login/Sign Up Links -->
+  <div *ngIf="!isAuthenticated">
+    <a class="header-cell" style="width: 80px;" routerLink="/user-login">Login</a>
+    <a class="header-cell" style="width: 80px;" routerLink="/user-register">Sign up</a>
+  </div>
+
+  <!-- User Profile (conditionally displayed when logged in) -->
+  <div *ngIf="isAuthenticated">
+    <a href="#" routerLink="/logout" class="header-link">
+      <span class="header-cell" style="width: 80px;">{{ usernamePlaceholder }}</span>
+    </a>
+  </div>
+</header>
