@@ -1,15 +1,16 @@
-<div class="header-empty"></div>
-
 <header>
   <!-- Application Link -->
   <a class="header-cell" href="#" routerLink="/user-main">Algolibrary</a>
   
   <!-- Dropdown for Themes -->
   <div class="dropdown">
-    <button class="header-button" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
-      Themes
-    </button>
-    <div class="dropdown-content" id="themeDropdown" [ngStyle]="{display: dropdownVisible ? 'block' : 'none'}">
+    <button class="header-button" 
+      (mouseenter)="showDropdown()" 
+      (mouseleave)="hideDropdown()">Themes</button>
+    <div class="dropdown-content" 
+      (mouseenter)="showDropdown()" 
+      (mouseleave)="hideDropdown()" 
+      [ngStyle]="{ display: dropdownVisible ? 'block' : 'none' }">
       <a href="#" routerLink="/user-theme">Neural Network</a>
       <a href="#" routerLink="/user-theme">Generative AI</a>
       <a href="#" routerLink="/user-theme">Computer Vision</a>
@@ -20,9 +21,9 @@
 
   <!-- Search Bar -->
   <div class="search-container">
-    <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
+    <input style="color: #fff" class="form-control" type="search" placeholder="Search..." aria-label="Search">
     <button class="search-button" type="submit">
-      <i class="fa fa-search"></i>
+      <i style="color: #fff" class="fa fa-search"></i>
     </button>
   </div>
 
@@ -54,7 +55,7 @@
 
   <!-- User Profile (conditionally displayed when logged in) -->
   <div *ngIf="isAuthenticated">
-    <a href="#" routerLink="/logout" class="header-link">
+    <a style="text-decoration: none;" href="#" routerLink="/logout" class="header-link">
       <span class="header-cell" style="width: 80px;">{{ usernamePlaceholder }}</span>
     </a>
   </div>
