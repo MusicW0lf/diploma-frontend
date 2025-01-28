@@ -1,0 +1,57 @@
+main {
+    padding: 20px;
+}
+
+.content-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 450px;
+    width: 100%;
+}
+
+.text-content {
+    text-align: center;
+    color: #ffffff;
+}
+
+.text-content h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.text-content p {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+
+.laboratory-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    color: #ffffff;
+}
+
+.laboratory-section h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.laboratory-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.video-container {
+    height: 450px;
+    width: 700px;
+    margin: 0 auto;
+    background-color: #F5F5F5;
+    border: 2px dashed #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1e1e1e;
+    font-size: 1.5em;
+}

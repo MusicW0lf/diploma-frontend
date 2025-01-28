@@ -1,12 +1,33 @@
 import { Routes } from '@angular/router';
+import { AlgorithmComponent } from './algorithm/algorithm.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LessonsComponent } from './lessons/lessons.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { LaboratoryComponent } from './laboratory/laboratory.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: Home
+        component: AlgorithmComponent
     },
     {
-        path: 'auth',
-        component: 
-    }
+        path: 'authentication',
+        component: RegistrationComponent
+    },
+    {
+        path: 'lessons',
+        component: LessonsComponent
+    },
+    {
+        path: 'subscription',
+        component: SubscriptionComponent
+    },
+    {
+        path: 'laboratory',
+        component: LaboratoryComponent
+    },
+    // {
+    //     path: 'editor',
+    //     component: EditorComponent
+    // }
 ];
