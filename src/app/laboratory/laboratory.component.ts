@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { LaboratoryProjectComponent } from '../laboratory-project/laboratory-project.component';
+import { CommonModule } from '@angular/common';
+import { LaboratoryContainerComponent } from '../laboratory-container/laboratory-container.component';
 
 @Component({
   selector: 'app-laboratory',
-  imports: [LaboratoryProjectComponent],
-  template: `<app-project-card></app-project-card>`,
-  styleUrl: './laboratory.component.css'
+  templateUrl: './laboratory.component.html',
+  styleUrl: './laboratory.component.css',
+  imports: [LaboratoryContainerComponent],
 })
 export class LaboratoryComponent {
 

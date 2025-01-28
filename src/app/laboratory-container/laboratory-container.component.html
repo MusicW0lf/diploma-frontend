@@ -1,0 +1,10 @@
+<div class="laboratory-container">
+    <app-laboratory-project
+      *ngFor="let project of projects"
+      [project_name]="project.project_name"
+      [language]="project.language"
+      [RandomColors]="project.RandomColors"
+      [link]="project.link">
+    </app-laboratory-project>
+  </div>
+  
