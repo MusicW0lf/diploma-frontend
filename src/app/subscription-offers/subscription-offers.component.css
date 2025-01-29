@@ -1,0 +1,102 @@
+.subscription-section {
+    text-align: center;
+    padding: 40px;
+    color: #ffffff;
+}
+
+.subscription-section h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.subscription-section h3 {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.subscription-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.subscription-card {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    color: #ffffff;
+    border: 2px solid #005b41;
+    transition: 0.5s;
+}
+
+.subscription-card--tall {
+    height: 420px;
+}
+
+.subscription-card:hover {
+    transform: scale(1.02);
+}
+
+.subscription-card h2 {
+    font-size: 24px;
+    color: #005b41;
+    margin-bottom: 5px;
+}
+
+.subscription-card .price {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+.subscription-card .description {
+    font-size: 14px;
+    margin: 5px 0 15px;
+}
+
+.subscription-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.subscription-card ul li {
+    font-size: 14px;
+    margin: 8px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.subscription-card ul li::before {
+    content: "✔";
+    color: #005b41;
+    position: absolute;
+    left: 0;
+}
+
+.subscription-card:first-child ul li:last-child::before {
+    content: "✘";
+    color: #ff4d4d;
+}
+
+.subscription-card:not(:first-child) ul li:last-child::before {
+    content: "";
+}
+
+.buy-button {
+    background-color: #005b41;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #004b33;
+}
