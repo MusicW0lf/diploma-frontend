@@ -5,28 +5,29 @@ import { LaboratoryModalComponent } from '../laboratory-modal/laboratory-modal.c
 
 @Component({
   selector: 'app-laboratory-language',
+  standalone: true,
   imports: [CommonModule, LaboratoryModalComponent],
   templateUrl: './laboratory-language.component.html',
   styleUrl: './laboratory-language.component.css'
 })
 export class LaboratoryLanguageComponent {
   isDropdownOpen = false;
+  isModalOpen = false;
+  selectedLanguage: string = '';
   languages = Object.values(Language);
 
   setDropdownState(state: boolean) {
     this.isDropdownOpen = state;
   }
 
-  isModalVisible: boolean = false;
-  selectedLanguage: string = '';
-  openModal(language: string) {
+  selectLanguage(language: string) {
     this.selectedLanguage = language;
-    this.isModalVisible = true;
-    document.body.style.overflow = 'hidden';
+    this.isModalOpen = true;
+    this.isDropdownOpen = false; // Close dropdown after selection
   }
 
   closeModal() {
-    this.isModalVisible = false;
-    document.body.style.overflow = '';
+    this.isModalOpen = false;
+    this.selectedLanguage = ''; // Reset selected language
   }
 }
