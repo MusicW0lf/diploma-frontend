@@ -14,7 +14,8 @@ export class RegistrationLoginComponent {
   email: string = '';
   password: string = '';
   loginMessage: string = '';
-
+  keepSignedIn: boolean = false;
+  
   constructor(private http: HttpClient, private router: Router) {}
 
   onSubmit() {
@@ -33,5 +34,9 @@ export class RegistrationLoginComponent {
       });
   }
   
+  loginWithGitlab() {}
+  loginWithGithub() {}
+  loginWithGoogle() {}
+  loginWithFacebook() {}
   
 }
