@@ -1,0 +1,51 @@
+.project-main {
+    padding: 20px;
+    max-width: 1200px;
+    min-height: calc(100vh - 7.5cm);
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.sort span {
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.sort-btn {
+    padding: 8px 16px;
+    font-size: 1rem;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sort-btn:hover {
+    background-color: #0056b3;
+}

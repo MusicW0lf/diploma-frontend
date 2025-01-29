@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LaboratoryModalComponent } from './laboratory-modal.component';
 
 describe('LaboratoryModalComponent', () => {
