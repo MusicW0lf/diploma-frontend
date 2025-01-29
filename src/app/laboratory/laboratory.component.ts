@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { LaboratoryContainerComponent } from '../laboratory-container/laboratory-container.component';
 import { LaboratoryLanguageComponent } from '../laboratory-language/laboratory-language.component';
 import { LaboratoryModalComponent } from '../laboratory-modal/laboratory-modal.component';
+import { AlgorithmFooterComponent } from '../algorithm-footer/algorithm-footer.component';
+import { AlgorithmHeaderComponent } from '../algorithm-header/algorithm-header.component';
 
 @Component({
   selector: 'app-laboratory',
   templateUrl: './laboratory.component.html',
   styleUrl: './laboratory.component.css',
-  imports: [LaboratoryContainerComponent, LaboratoryLanguageComponent, LaboratoryModalComponent],
+  imports: [LaboratoryContainerComponent, LaboratoryLanguageComponent, LaboratoryModalComponent,
+            AlgorithmFooterComponent, AlgorithmHeaderComponent
+  ],
 })
 export class LaboratoryComponent {
 
