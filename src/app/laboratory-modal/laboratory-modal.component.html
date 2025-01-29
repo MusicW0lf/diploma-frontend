@@ -1,8 +1,8 @@
-<div class="modal-overlay" (click)="close.emit()">
+<div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <h2>Create a New Project</h2>
       <p>Language: <strong>{{ selectedLanguage }}</strong></p>
-      <input type="text" [(ngModel)]="projectName" placeholder="Enter project name" required>
+      <input type="text" [(ngModel)]="projectName" placeholder="Enter project name" required />
       <button class="btn btn-success" (click)="createProject()">Create</button>
     </div>
   </div>

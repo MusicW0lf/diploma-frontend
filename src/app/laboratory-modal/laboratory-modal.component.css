@@ -11,12 +11,7 @@
     background: rgba(0, 0, 0, 0.8);
     z-index: 9999;
     backdrop-filter: blur(8px);
-    visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.modal.visible {
-    visibility: visible;
 }
 
 .modal-content {
