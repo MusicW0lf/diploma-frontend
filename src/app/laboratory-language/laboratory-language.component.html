@@ -1,0 +1,7 @@
+<div class="dropdown-container" (mouseenter)="setDropdownState(true)" (mouseleave)="setDropdownState(false)">
+    <button class="create-project">+ Create a project</button>
+    <div class="dropdown-menu" *ngIf="isDropdownOpen">
+      <a class="dropdown-item" *ngFor="let lang of languages" (mouseenter)="openModal(lang)">{{ lang }}</a>
+    </div>
+  </div>
+  <!-- Use LaboratoryModalComponent -->
