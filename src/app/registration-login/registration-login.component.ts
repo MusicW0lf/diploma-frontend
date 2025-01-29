@@ -1,30 +1,37 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-login',
-  imports: [FormsModule],
   templateUrl: './registration-login.component.html',
-  styleUrl: './registration-login.component.css'
+  imports: [CommonModule, FormsModule],
+  styleUrls: ['./registration-login.component.css']
 })
 export class RegistrationLoginComponent {
-email: string = '';
-password: string = '';
-keepSignedIn: boolean = false;
+  email: string = '';
+  password: string = '';
+  loginMessage: string = '';
 
-onSubmit(){
-  //API HERE
-}
+  constructor(private http: HttpClient, private router: Router) {}
 
-loginWithGoogle()
-{}
-
-loginWithGitlab()
-{}
-loginWithGithub()
-{}
-
-loginWithFacebook()
-{}
-
+  onSubmit() {
+    const body = { email: this.email, password: this.password };
+  
+    this.http.post<any>('http://localhost:8000/login', body, { responseType: 'json' })
+      .subscribe({
+        next: response => {
+          this.loginMessage = 'Login successful!';
+          localStorage.setItem('authToken', response.token);
+          this.router.navigate(['']);
+        },
+        error: error => {
+          this.loginMessage = 'Login failed. Please check your credentials.';
+        }
+      });
+  }
+  
+  
 }
