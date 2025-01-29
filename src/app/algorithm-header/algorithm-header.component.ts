@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-algorithm-header',
   templateUrl: './algorithm-header.component.html',
   styleUrls: ['./algorithm-header.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class AlgorithmHeaderComponent {
-  isAuthenticated = true; // Placeholder for actual authentication state
+  isAuthenticated = false; // Placeholder for actual authentication state
   usernamePlaceholder = 'Guest'; // Placeholder for username
   // CHANGE TO SETTER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
