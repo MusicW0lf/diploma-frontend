@@ -1,44 +1,47 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { ModalService } from '../laboratory-modal/laboratory-modal-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-laboratory-modal',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './laboratory-modal.component.html',
-  styleUrl: './laboratory-modal.component.css'
+  styleUrls: ['./laboratory-modal.component.css']
 })
-export class LaboratoryModalComponent {
-  @Input() selectedLanguage: string = '';
-  @Output() close = new EventEmitter<void>();
+export class LaboratoryModalComponent implements OnDestroy {
+  selectedLanguage: string = '';
   projectName: string = '';
+  isModalOpen: boolean = false;
+  private modalSubscription: Subscription;
 
-  createProject() {
-    alert("project created")
+  constructor(private modalService: ModalService) {
+    // Subscribe to modal open event
+    this.modalSubscription = this.modalService.modalOpen$.subscribe(language => {
+      if (language) {
+        this.selectedLanguage = language;
+        this.isModalOpen = true;  // Open modal
+      } else {
+        this.isModalOpen = false;  // Close modal if empty string is emitted
+      }
+    });
   }
-  //   if (!this.projectName) return;
 
-  //   const userToken = localStorage.getItem('authToken'); // Example: Get token from storage
-  //   const requestBody = {
-  //     name: this.projectName,
-  //     language: this.selectedLanguage,
-  //     userToken: userToken
-  //   };
+  // Close modal and notify service
+  closeModal() {
+    this.modalService.closeModal(); 
+  }
 
-  //   fetch('https://api.example.com/projects', {  // Replace with actual API URL
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${userToken}`
-  //     },
-  //     body: JSON.stringify(requestBody)
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log('Project Created:', data);
-  //     window.location.href = `/projects/${data.id}`; // Redirect to project page
-  //   })
-  //   .catch(error => console.error('Error:', error));
-  // }
+  // Create a project (API call or other functionality)
+  createProject() {
+    alert(`Project created with name: ${this.projectName} and language: ${this.selectedLanguage}`);
+    // Implement API call here
+  }
+
+  // Cleanup subscription on component destroy
+  ngOnDestroy() {
+    this.modalSubscription.unsubscribe();
+  }
 }

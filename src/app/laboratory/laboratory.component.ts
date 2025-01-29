@@ -10,7 +10,7 @@ import { AlgorithmHeaderComponent } from '../algorithm-header/algorithm-header.c
   selector: 'app-laboratory',
   templateUrl: './laboratory.component.html',
   styleUrl: './laboratory.component.css',
-  imports: [LaboratoryContainerComponent, LaboratoryLanguageComponent, LaboratoryModalComponent,
+  imports: [LaboratoryLanguageComponent, LaboratoryModalComponent,
             AlgorithmFooterComponent, AlgorithmHeaderComponent
   ],
 })
