@@ -8,6 +8,7 @@ footer {
     align-items: flex-start;
     position: relative; /* Залишається відносно body */
     z-index: 2;
+    top: 40px;
     border-top: 2px solid #fff;
     transition: margin-left 0.3s, width 0.3s; /* Додаємо перехід для ширини */
 }
