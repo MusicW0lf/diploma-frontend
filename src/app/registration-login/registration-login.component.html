@@ -1,26 +1,42 @@
 <div class="right-panel">
-    <h3>Log In</h3>
-    <p>Don’t have an account? <a routerLink="/register">Sign Up</a></p>
-    <div class="d-flex gap-2 mb-3 justify-content-center">
-      <button class="btn btn-outline-secondary w-100" style="margin: 0px 5px;" (click)="loginWithGoogle()"><i class="fab fa-google mr-2"></i>Google</button>
-      <button class="btn btn-outline-secondary w-100" style="margin: 0px 5px;" (click)="loginWithFacebook()"><i class="fab fa-facebook mr-2"></i>Facebook</button>
-    </div>
-    <div class="d-flex gap-2 mb-3 justify-content-center">
-      <button class="btn btn-outline-secondary w-100" style="margin: 0px 5px;" (click)="loginWithGithub()"><i class="fab fa-github mr-2"></i>Github</button>
-      <button class="btn btn-outline-secondary w-100" style="margin: 0px 5px;" (click)="loginWithGitlab()"><i class="fab fa-gitlab mr-2"></i>Gitlab</button>
-    </div>
-    <p class="or">OR</p>
-    <form (ngSubmit)="onSubmit()">
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" class="form-control mb-2" required>
-      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" class="form-control mb-3" required>
-      <button type="submit" class="btn btn-success w-100">Log In</button>
-    </form>
-    <p class="terms mt-3">
-      By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-    </p>
-    <p><input type="checkbox" [(ngModel)]="keepSignedIn"> Keep me signed in</p>
-    <p class="forgot-password mt-2">
-      <a href="#">Forgot Password?</a>
-    </p>
+  <h3>Log In</h3>
+  <p>Don’t have an account? <a routerLink="/register">Sign Up</a></p>
+
+  <div class="social-login">
+      <button class="btn btn-outline-secondary" (click)="loginWithGoogle()">
+          <i class="fab fa-google"></i> Google
+      </button>
+      <button class="btn btn-outline-secondary" (click)="loginWithFacebook()">
+          <i class="fab fa-facebook"></i> Facebook
+      </button>
   </div>
-  
+
+  <div class="social-login">
+      <button class="btn btn-outline-secondary" (click)="loginWithGithub()">
+          <i class="fab fa-github"></i> Github
+      </button>
+      <button class="btn btn-outline-secondary" (click)="loginWithGitlab()">
+          <i class="fab fa-gitlab"></i> Gitlab
+      </button>
+  </div>
+
+  <p class="or">OR</p>
+
+  <form (ngSubmit)="onSubmit()">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" class="form-control" required>
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" class="form-control" required>
+      <button type="submit" class="btn btn-success">Log In</button>
+  </form>
+
+  <p class="terms">
+      By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+  </p>
+
+  <label>
+      <input type="checkbox" [(ngModel)]="keepSignedIn"> Keep me signed in
+  </label>
+
+  <p class="forgot-password">
+      <a href="#">Forgot Password?</a>
+  </p>
+</div>

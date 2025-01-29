@@ -1,11 +1,9 @@
-
-<a href="javascript:history.back()" class="back-button">
+<a (click)="goBack()" class="back-button">
     <i class="fas fa-arrow-left"></i>
 </a>
 
-
-<div class="container d-flex flex-column flex-lg-row align-items-center justify-content-center min-vh-100">
-    <div class="col-lg-6 text-lg-start px-4" style="margin-left: 15px;">
+<div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between min-vh-100 px-4">
+    <div class="col-lg-6 text-lg-start left-panel">
         <h1 class="display-6 text-success">AlgoLib</h1>
         <h2 class="h4 mt-3">Explore the World of Algorithms with Us</h2>
         <p class="mt-2">Log in to access AlgoLib features</p>
@@ -18,6 +16,7 @@
             <li>✔ Community support</li>
         </ul>
     </div>
-<div class="col-lg-6 p-4 justify-content-center">
-    <app-registration-login></app-registration-login>
+    <div class="col-lg-6 p-4 justify-content-center right-panel">
+        <app-registration-login></app-registration-login>
+    </div>
 </div>
