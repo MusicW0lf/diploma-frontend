@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+// import { AuthService } from './registration/auth.servise';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,15 @@ import { RouterOutlet } from '@angular/router';
     <router-outlet></router-outlet>
   `,
 })
-export class AppComponent {}
+export class AppComponent{
+  // isAuthenticated: boolean = false;
+
+  // constructor(private authService: AuthService) {}
+
+  // ngOnInit(): void {
+  //   this.authService.isAuthenticated().subscribe(isAuthenticated => {
+  //     this.isAuthenticated = isAuthenticated;
+  //     alert("Authenticated:"+ this.isAuthenticated)
+  //   });
+  // }
+}
