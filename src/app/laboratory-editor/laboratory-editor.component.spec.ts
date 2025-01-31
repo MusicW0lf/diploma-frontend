@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LaboratoryEditorComponent } from './laboratory-editor.component';
 
 describe('LaboratoryEditorComponent', () => {

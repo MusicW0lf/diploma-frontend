@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { LaboratoryComponent } from './laboratory/laboratory.component';
+import { LaboratoryEditorComponent } from './laboratory-editor/laboratory-editor.component';
 
 export const routes: Routes = [
     {
@@ -26,8 +27,8 @@ export const routes: Routes = [
         path: 'laboratory',
         component: LaboratoryComponent
     },
-    // {
-    //     path: 'editor',
-    //     component: EditorComponent
-    // }
+    {
+        path: 'editor',
+        component: LaboratoryEditorComponent
+    }
 ];
