@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-laboratory-editor',
-  imports: [],
+  imports: [ FormsModule, CommonModule],
   templateUrl: './laboratory-editor.component.html',
   styleUrl: './laboratory-editor.component.css'
 })
