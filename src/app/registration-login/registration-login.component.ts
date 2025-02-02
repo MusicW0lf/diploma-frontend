@@ -30,6 +30,7 @@ export class RegistrationLoginComponent {
         },
         error: error => {
           this.loginMessage = 'Login failed. Please check your credentials.';
+          console.log(this.loginMessage)
         }
       });
   }
