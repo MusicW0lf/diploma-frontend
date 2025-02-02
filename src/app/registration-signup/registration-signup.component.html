@@ -22,7 +22,7 @@
   
     <p class="or">OR</p>
   
-    <form (ngSubmit)="onSubmitSignUp()">
+    <form (ngSubmit)="onSubmit()">
       <input type="text" [(ngModel)]="username" name="username" placeholder="Full Name" class="form-control" required>
       <input type="email" [(ngModel)]="email" name="email" placeholder="Email" class="form-control" required>
       <input type="password" [(ngModel)]="password" name="password" placeholder="Password" class="form-control" required>

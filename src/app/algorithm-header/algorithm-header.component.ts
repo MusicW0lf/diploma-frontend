@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../registration/auth.servise';
 
 @Component({
@@ -10,18 +10,23 @@ import { AuthService } from '../registration/auth.servise';
   imports: [CommonModule, RouterModule]
 })
 export class AlgorithmHeaderComponent implements OnInit {
-  isAuthenticated = false;  // Placeholder for actual authentication state
-  usernamePlaceholder = 'Guest';  // Default to 'Guest'
+  isAuthenticated = false; 
+  usernamePlaceholder = 'Guest';  
 
   dropdownVisible = false;
   hideTimeout: any;
 
-  constructor(private authService: AuthService) {}  // Inject AuthService
+  constructor(private authService: AuthService, private router: Router) {} 
 
+
+  navigateToAuth(mode: string) {
+    this.router.navigate(['/auth'], { queryParams: { mode } });
+  }
+  
   ngOnInit(): void {
     this.authService.getUsername().subscribe(username => {
-      this.usernamePlaceholder = username;  // Set the username if authenticated
-      this.isAuthenticated = username !== 'Guest';  // Set authentication state
+      this.usernamePlaceholder = username;
+      this.isAuthenticated = username !== 'Guest'; 
     });
   }
 
@@ -37,8 +42,8 @@ export class AlgorithmHeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.logout();  // Clears the token
-    this.isAuthenticated = false;  // Update auth state
-    this.usernamePlaceholder = 'Guest';  // Reset the username
+    this.authService.logout();
+    this.isAuthenticated = false; 
+    this.usernamePlaceholder = 'Guest'; 
   }
 }

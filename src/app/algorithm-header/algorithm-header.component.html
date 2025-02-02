@@ -50,8 +50,8 @@
 
   <!-- Conditional Login/Sign Up Links -->
   <div *ngIf="!isAuthenticated">
-    <a class="header-cell" style="width: 80px;" routerLink="/authentication" [queryParams]="{ form: 'login' }">Login</a>
-    <a class="header-cell" style="width: 80px;" routerLink="/authentication" [queryParams]="{ form: 'signup' }">Sign up</a>
+    <a class="header-cell" style="width: 80px;" (click)="navigateToAuth('login')">Login</a>
+    <a class="header-cell" style="width: 80px;" (click)="navigateToAuth('signup')">Sign up</a>
   </div>
 
   <!-- User Profile (conditionally displayed when logged in) -->

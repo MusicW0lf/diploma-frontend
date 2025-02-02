@@ -12,7 +12,7 @@ export const routes: Routes = [
         component: AlgorithmComponent
     },
     {
-        path: 'authentication',
+        path: 'auth',
         component: RegistrationComponent
     },
     {
