@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AlgorithmComponent } from './algorithm.component';
 
 describe('AlgorithmComponent', () => {

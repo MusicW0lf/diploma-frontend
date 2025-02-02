@@ -1,7 +1,7 @@
 <main>
     <!-- Модальне вікно -->
-    <div id="rename-project-modal" class="modal" [ngClass]="{'visible': isModalOpen}">
-      <div class="modal-content">
+    <div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
         <h2>Rename the Project</h2>
         <input type="text" [(ngModel)]="projectName" placeholder="Enter new name" required />
         <button class="btn btn-success" (click)="renameProject()">Rename</button>
