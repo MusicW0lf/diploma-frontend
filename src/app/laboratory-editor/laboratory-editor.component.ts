@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+declare var Prism: any;
 
 @Component({
   selector: 'app-laboratory-editor',
-  imports: [ FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './laboratory-editor.component.html',
   styleUrl: './laboratory-editor.component.css'
 })
-export class LaboratoryEditorComponent {
+export class LaboratoryEditorComponent implements AfterViewChecked {
   pythonCode: string = '';
+  highlightedCode: string = '';
   output: string = '';
   error: string = '';
   projectName: string = 'Bruh';
@@ -29,13 +31,11 @@ export class LaboratoryEditorComponent {
   }
 
   renameProject() {
-    // Логіка перейменування проекту
     console.log('Renamed project to:', this.projectName);
     this.closeModal();
   }
 
   deleteProject() {
-    // Логіка видалення проекту
     console.log('Project deleted');
   }
 
@@ -56,15 +56,26 @@ export class LaboratoryEditorComponent {
   }
 
   updatePreview() {
-    // Підсвітка синтаксису
-    console.log('Code updated');
+    setTimeout(() => {
+      if (typeof Prism !== 'undefined') {
+        this.highlightedCode = Prism.highlight(
+          this.pythonCode,
+          Prism.languages.python,
+          'python'
+        );
+      }
+    }, 0);
+  }
+
+  ngAfterViewChecked() {
+    Prism.highlightAll();
   }
 
   executeCode() {
     this.http
       .post('/laboratory/execute/', {
         code: this.pythonCode,
-        project_id: '123', // Змінити на реальний ID
+        project_id: '123',
       })
       .subscribe(
         (response: any) => {

@@ -1,57 +1,53 @@
 <main>
-    <!-- Модальне вікно -->
-    <div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <h2>Rename the Project</h2>
-        <input type="text" [(ngModel)]="projectName" placeholder="Enter new name" required />
-        <button class="btn btn-success" (click)="renameProject()">Rename</button>
+  <!-- Модальне вікно -->
+  <div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>Rename the Project</h2>
+      <input type="text" [(ngModel)]="projectName" placeholder="Enter new name" required />
+      <button class="btn btn-success" (click)="renameProject()">Rename</button>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="top-bar">
+      <div class="project-action">
+        <span class="project-textarea" (click)="openModal()">{{ projectName }}</span>
+      </div>
+      <div class="project-delete">
+        <button class="delete-btn" (click)="deleteProject()">Delete</button>
       </div>
     </div>
-  
-    <div class="main-container">
-      <div class="top-bar">
-        <!-- Контейнер для текстового поля -->
-        <div class="project-action">
-          <!-- Текстовий блок виглядає як textarea -->
-          <span class="project-textarea" (click)="openModal()">Bruh</span>
-        </div>
-  
-        <!-- Контейнер для кнопки "Delete" -->
-        <div class="project-delete">
-          <button class="delete-btn" (click)="deleteProject()">Delete</button>
-        </div>
+    
+    <form class="code-form">
+      <label for="code">Write your Python code below:</label>
+      <textarea
+        id="code"
+        rows="12"
+        class="code-editor"
+        [(ngModel)]="pythonCode"
+        name="code"
+        (keydown)="handleTab($event)"
+        (input)="updatePreview()"
+        placeholder="Write your Python code here..."
+      ></textarea>
+      <div class="button-group">
+        <button type="button" class="btn btn-success run-button" (click)="executeCode()">Run Code</button>
       </div>
-  
-      <form class="code-form">
-        <label for="code">Write your Python code below:</label>
-        <textarea
-          id="code"
-          rows="12"
-          class="code-editor"
-          [(ngModel)]="pythonCode"
-          name="code"
-          (keydown)="handleTab($event)"
-          (input)="updatePreview()"
-          placeholder="Write your Python code here..."
-        ></textarea>
-        <div class="button-group">
-          <button type="button" class="btn btn-success run-button" (click)="executeCode()">Run Code</button>
-        </div>
-      </form>
-  
-      <section class="preview-section">
-        <h2>Preview</h2>
-        <pre><code class="language-python">{{ pythonCode }}</code></pre>
-      </section>
-  
-      <section class="output-section">
-        <h2>Output</h2>
-        <pre id="output" class="output">{{ output }}</pre>
-      </section>
-  
-      <section class="error-section">
-        <h2>Error</h2>
-        <pre id="error" class="error">{{ error }}</pre>
-      </section>
-    </div>
+    </form>
+
+    <section class="preview-section">
+      <h2>Preview</h2>
+      <pre><code class="language-python" [innerHTML]="highlightedCode"></code></pre>
+    </section>
+
+    <section class="output-section">
+      <h2>Output</h2>
+      <pre id="output" class="output">{{ output }}</pre>
+    </section>
+
+    <section class="error-section">
+      <h2>Error</h2>
+      <pre id="error" class="error">{{ error }}</pre>
+    </section>
+  </div>
 </main>
