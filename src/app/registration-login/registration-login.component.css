@@ -20,7 +20,8 @@
 
 .right-panel a {
     color: #18a76d;
-    text-decoration: none;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .social-login {
