@@ -49,5 +49,7 @@ export class RegistrationSignupComponent {
   signUpWithGoogle() {}
   signUpWithFacebook() {}
   
-
+  navigateToAuth(mode: string) {
+    this.router.navigate(['/auth'], { queryParams: { mode } });
+  }
 }

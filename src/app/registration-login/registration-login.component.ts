@@ -40,4 +40,7 @@ export class RegistrationLoginComponent {
   loginWithGoogle() {}
   loginWithFacebook() {}
   
+  navigateToAuth(mode: string) {
+    this.router.navigate(['/auth'], { queryParams: { mode } });
+  }
 }

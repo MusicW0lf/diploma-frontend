@@ -1,6 +1,6 @@
 <div class="right-panel">
   <h3>Log In</h3>
-  <p>Don’t have an account? <a routerLink="/register">Sign Up</a></p>
+  <p>Don’t have an account? <a (click)="navigateToAuth('signup')">Sign Up</a></p>
 
   <div class="social-login">
       <button class="btn btn-outline-secondary" (click)="loginWithGoogle()">

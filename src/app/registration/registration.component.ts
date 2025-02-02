@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { RegistrationLoginComponent } from '../registration-login/registration-login.component';
 import { RegistrationSignupComponent } from '../registration-signup/registration-signup.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -11,10 +11,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
-  constructor(private location: Location, private route: ActivatedRoute) {}
+  constructor(private location: Location, private route: ActivatedRoute, private router: Router) {}
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['']);
   }
 
   mode: 'login' | 'signup' = 'login';
