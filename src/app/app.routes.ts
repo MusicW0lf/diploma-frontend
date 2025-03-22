@@ -5,7 +5,7 @@ import { LessonsComponent } from './lessons/lessons.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { LaboratoryComponent } from './laboratory/laboratory.component';
 import { LaboratoryEditorComponent } from './laboratory-editor/laboratory-editor.component';
-// import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserComponent } from './user/user.component';
 
 export const routes: Routes = [
     {
@@ -33,7 +33,7 @@ export const routes: Routes = [
         component: LaboratoryEditorComponent
     },
     {
-        // path: 'profile',
-        // component: UserProfileComponent
+        path: 'profile',
+        component: UserComponent
     }
 ];
