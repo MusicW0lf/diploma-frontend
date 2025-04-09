@@ -9,6 +9,7 @@ header {
     top: 0;
     z-index: 5000;
     border-bottom: 2px solid #fff;
+    color: #fff;
 }
 
 .header-cell {
@@ -46,6 +47,11 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
 }
 
+.custom-placeholder::placeholder {
+    color: white;
+    /* opacity: 1; */
+  }
+
 .search-container .form-control {
     border: none; /* Remove default border */
     outline: none; /* Remove outline */
@@ -53,6 +59,7 @@ header {
     border-radius: 25px; /* Match the container's border radius */
     padding: 10px; /* Padding for the input field */
     width: 100%; /* Full width */
+    color: #fff;
 }
 
 .search-container .search-button {
@@ -62,7 +69,7 @@ header {
 }
 
 .search-container .search-button i {
-    color: #4CAF50; /* Color for the search icon */
+    color: #fff;
     font-size: 1.2em; /* Adjust icon size */
 }
 
