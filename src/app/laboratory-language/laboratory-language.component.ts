@@ -23,10 +23,20 @@ export class LaboratoryLanguageComponent {
 
   constructor(private modalService: ModalService) {}
 
-  // Open and close the dropdown
+  timeoutId: any = null;
+
   setDropdownState(state: boolean) {
-    this.isDropdownOpen = state;
-  }
+    if (state) {
+      // Якщо курсор знову зайшов на кнопку або меню — скасовуємо приховування
+      clearTimeout(this.timeoutId);
+      this.isDropdownOpen = true;
+    } else {
+      // Затримка перед закриттям
+      this.timeoutId = setTimeout(() => {
+        this.isDropdownOpen = false;
+      }, 150); // 0.15 секунди
+    }
+  }  
 
   // When a language is selected, open the modal with the selected language
   selectLanguage(language: string) {
