@@ -11,14 +11,5 @@ import { RouterOutlet } from '@angular/router';
   `,
 })
 export class AppComponent{
-  // isAuthenticated: boolean = false;
 
-  // constructor(private authService: AuthService) {}
-
-  // ngOnInit(): void {
-  //   this.authService.isAuthenticated().subscribe(isAuthenticated => {
-  //     this.isAuthenticated = isAuthenticated;
-  //     alert("Authenticated:"+ this.isAuthenticated)
-  //   });
-  // }
 }

@@ -6,6 +6,7 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { LaboratoryComponent } from './laboratory/laboratory.component';
 import { LaboratoryEditorComponent } from './laboratory-editor/laboratory-editor.component';
 import { UserComponent } from './user/user.component';
+import { AuthGuard } from './registration/auth.guard';
 
 export const routes: Routes = [
     {
@@ -26,7 +27,8 @@ export const routes: Routes = [
     },
     {
         path: 'laboratory',
-        component: LaboratoryComponent
+        component: LaboratoryComponent, 
+        canActivate: [AuthGuard]
     },
     {
         path: 'editor',

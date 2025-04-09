@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LaboratoryProjectComponent {
   @Input() project_name: string = '';  // Receive the project name
-  @Input() language: Language | undefined;  // Receive the project language
+  @Input() language: Language = Language.Python;  // Receive the project language
   @Input() RandomColors: string[] = [];  // Receive the colors
   @Input() link: string = '';  // Receive the link
 }

@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class RegistrationSignupComponent {
   passwordConfirm: string = '';
   username: string = '';
-  emailUpdates: boolean = false;
   email: string = '';
   password: string = '';
   loginMessage: string = '';
@@ -27,21 +26,22 @@ export class RegistrationSignupComponent {
     }
     else
     {
-    const body = { email: this.email, password: this.password, username:this.username, emailUpdates: this.emailUpdates};
+    const body = { email: this.email, password: this.password, username:this.username};
   
-    this.http.post<any>('http://localhost:8000/signup', body, { responseType: 'json' })
-      .subscribe({
-        next: response => {
-          this.loginMessage = 'Registration successful!';
-          localStorage.setItem('authToken', response.token);
-          this.router.navigate(['']);
-        },
-        error: error => {
-          this.loginMessage = 'Registration failed. This email is already registered.';
-          console.log(this.loginMessage)
-        }
-      });
-    }
+    this.http.post<any>('http://localhost:8000/signup', body, {
+      responseType: 'json',
+      withCredentials: true
+    }).subscribe({
+      next: response => {
+        this.loginMessage = 'Registration successful!';
+        this.router.navigate(['']);
+      },
+      error: error => {
+        this.loginMessage = 'Registration failed. This email is already registered.';
+        console.error(this.loginMessage);
+      }
+    });
+  }
   }
 
   signUpWithGitlab() {}

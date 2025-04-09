@@ -21,11 +21,13 @@ export class RegistrationLoginComponent {
   onSubmit() {
     const body = { email: this.email, password: this.password };
   
-    this.http.post<any>('http://localhost:8000/login', body, { responseType: 'json' })
+    this.http.post<any>('http://localhost:8000/login', body, { 
+      responseType: 'json',
+      withCredentials: true
+      })
       .subscribe({
         next: response => {
           this.loginMessage = 'Login successful!';
-          localStorage.setItem('authToken', response.token);
           this.router.navigate(['']);
         },
         error: error => {

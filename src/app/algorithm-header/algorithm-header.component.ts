@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd  } from '@angular/router';
 import { AuthService } from '../registration/auth.servise';
 
 @Component({
@@ -10,9 +10,9 @@ import { AuthService } from '../registration/auth.servise';
   imports: [CommonModule, RouterModule]
 })
 export class AlgorithmHeaderComponent implements OnInit {
-  isAuthenticated = false; 
+ 
   usernamePlaceholder = 'Guest';  
-
+  isAuthenticated = false;
   dropdownVisible = false;
   hideTimeout: any;
 
@@ -24,9 +24,17 @@ export class AlgorithmHeaderComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.authService.getUsername().subscribe(username => {
-      this.usernamePlaceholder = username;
-      this.isAuthenticated = username !== 'Guest'; 
+    this.authService.getUsername().subscribe({
+      next: () => {
+        // Values will automatically update from AuthService
+        this.authService.username$.subscribe(username => {
+          this.usernamePlaceholder = username;
+        });
+
+        this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+          this.isAuthenticated = isAuthenticated;
+        });
+      },
     });
   }
 
@@ -42,8 +50,13 @@ export class AlgorithmHeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.logout();
-    this.isAuthenticated = false; 
-    this.usernamePlaceholder = 'Guest'; 
+    this.authService.logout() 
+    this.router.navigate(['']);
   }
+
+  
+
+
+
+
 }

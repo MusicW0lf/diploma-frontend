@@ -1,9 +1,15 @@
 <div class="project-grid">
-    <app-laboratory-project
-      *ngFor="let project of projects"
-      [project_name]="project.project_name"
-      [language]="project.language"
-      [RandomColors]="project.RandomColors"
-      [link]="project.link">
-    </app-laboratory-project>
+  <!-- Check if projects are available -->
+  <app-laboratory-project
+    *ngFor="let project of projects"
+    [project_name]="project.project_name"
+    [language]="project.language"
+    [RandomColors]="project.RandomColors"
+    [id]="project.id">
+  </app-laboratory-project>
+
+  <!-- Display message if no projects are available -->
+  <div *ngIf="projects.length === 0">
+    No projects available at the moment.
+  </div>
 </div>

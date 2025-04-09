@@ -56,7 +56,7 @@
 
   <!-- User Profile (conditionally displayed when logged in) -->
   <div *ngIf="isAuthenticated">
-    <a style="text-decoration: none;" href="#" routerLink="/logout" class="header-link">
+    <a style="text-decoration: none;" href="#" (click)="logout()" class="header-link">
       <span class="header-cell" style="width: 80px;">{{ usernamePlaceholder }}</span>
     </a>
   </div>
