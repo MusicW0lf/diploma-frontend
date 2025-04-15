@@ -2,12 +2,14 @@
   <i class="fas fa-arrow-left"></i>
 </a>
 
+
 <main>
+  <!-- Модальне вікно -->
   <div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <h2>Rename the Project</h2>
-      <input type="text" [(ngModel)]="project.name" placeholder="Enter new name" required />
-      <button class="btn btn-success" (click)="renameProject(project.project_id, project.name)">Rename</button>
+      <input type="text" [(ngModel)]="projectName" placeholder="Enter new name" required />
+      <button class="btn btn-success" (click)="renameProject()">Rename</button>
     </div>
   </div>
 
@@ -18,21 +20,22 @@
         <button class="rename-btn" (click)="openModal()">Rename</button>
       </div>
       <div class="project-delete">
-        <button class="delete-btn" (click)="deleteProject(project.project_id)">Delete</button>
+        <button class="delete-btn" (click)="deleteProject()">Delete</button>
       </div>
     </div>
-
+    
     <form class="code-form">
       <label for="code">Write your Python code below:</label>
       <textarea
         id="code"
         rows="12"
         class="code-editor"
-        [(ngModel)]="project.code"
+        [(ngModel)]="pythonCode"
         name="code"
-        class="code-editor">
-      </ngx-monaco-editor>
-
+        (keydown)="handleTab($event)"
+        (input)="updatePreview()"
+        placeholder="Write your Python code here..."
+      ></textarea>
       <div class="button-group">
         <button type="button" class="btn btn-success run-button" (click)="executeCode()">Run Code</button>
       </div>
@@ -40,10 +43,8 @@
 
     <section class="preview-section">
       <h2>Preview</h2>
-      <pre><code [ngClass]="'language-' + project.language.toLowerCase()" [innerHTML]="highlightedCode"></code></pre>
+      <pre><code class="language-python" [innerHTML]="highlightedCode"></code></pre>
     </section>
-    
-    
 
     <section class="output-section">
       <h2>Output</h2>
