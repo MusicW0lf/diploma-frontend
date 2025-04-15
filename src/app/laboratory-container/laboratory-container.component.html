@@ -2,9 +2,9 @@
   <!-- Check if projects are available -->
   <app-laboratory-project
     *ngFor="let project of projects"
-    [project_name]="project.project_name"
+    [project_name]="project.name"
     [language]="project.language"
-    [RandomColors]="project.RandomColors"
+    [RandomColors]="project.random_colors"
     [id]="project.id">
   </app-laboratory-project>
 

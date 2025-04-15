@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { LaboratoryContainerComponent } from '../laboratory-container/laboratory-container.component';
 import { LaboratoryLanguageComponent } from '../laboratory-language/laboratory-language.component';
 import { LaboratoryModalComponent } from '../laboratory-modal/laboratory-modal.component';
@@ -9,7 +8,7 @@ import { AlgorithmHeaderComponent } from '../algorithm-header/algorithm-header.c
 @Component({
   selector: 'app-laboratory',
   templateUrl: './laboratory.component.html',
-  styleUrl: './laboratory.component.css',
+  styleUrls: ['./laboratory.component.css'],
   imports: [LaboratoryLanguageComponent, LaboratoryModalComponent, LaboratoryContainerComponent,
             AlgorithmFooterComponent, AlgorithmHeaderComponent
   ],

@@ -2,6 +2,8 @@ import { Component, AfterViewChecked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { routes } from '../app.routes';
 declare var Prism: any;
 
 @Component({
@@ -15,10 +17,11 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
   highlightedCode: string = '';
   output: string = '';
   error: string = '';
-  projectName: string = 'Bruh';
+  projectName: string = '';
+  projectId: string | null = null;
   isModalOpen: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
 
   openModal() {
     this.isModalOpen = true;
@@ -30,11 +33,13 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
     document.body.style.overflow = '';
   }
 
+  //asdasdsadasdsad
   renameProject() {
     console.log('Renamed project to:', this.projectName);
     this.closeModal();
   }
 
+  // adsadasdasds
   deleteProject() {
     console.log('Project deleted');
   }
@@ -71,11 +76,20 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
     Prism.highlightAll();
   }
 
+  ngOnInit(): void {
+    this.projectId = this.route.snapshot.paramMap.get('id');
+    console.log('Loaded project ID:', this.projectId);
+    if (this.projectId == null)
+    {
+      console.log("Fuck" + this.projectId)
+      //this.router.navigate(['']);
+    }
+  }
+  // asdasdaasdsa
   executeCode() {
     this.http
       .post('/laboratory/execute/', {
-        code: this.pythonCode,
-        project_id: '123',
+        project_id: '',
       })
       .subscribe(
         (response: any) => {

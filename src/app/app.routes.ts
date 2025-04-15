@@ -31,11 +31,13 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'editor',
-        component: LaboratoryEditorComponent
+        path: 'project/:id',
+        component: LaboratoryEditorComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'profile',
-        component: UserComponent
-    }
+        component: UserComponent,
+        canActivate: [AuthGuard]
+    },
 ];

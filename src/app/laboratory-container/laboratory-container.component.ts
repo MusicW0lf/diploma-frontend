@@ -26,6 +26,7 @@ export class LaboratoryContainerComponent implements OnInit {
     this.authService.getUserProjects().subscribe({
       next: (data) => {
         this.projects = data;  // Assign fetched projects to the local array
+        console.log(this.projects)
         this.isLoading = false;  // Set loading to false when data is fetched
       },
       error: (error) => {

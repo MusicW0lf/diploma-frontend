@@ -88,7 +88,7 @@ main {
     position: relative;
 }
 
-.project-action {
+.project-rename {
     width: 100%;
 }
 
@@ -110,7 +110,8 @@ main {
     margin-left: 20px;
 }
 
-.delete-btn {
+
+.delete-btn, .rename-btn {
     background-color: #dc3545;
     color: white;
     border: none;
@@ -121,6 +122,13 @@ main {
     transition: background-color 0.3s;
 }
 
+.rename-btn {
+    background-color: #aaa5a5;
+}
+
+.rename-btn:hover {
+    background-color: #615d5d;
+}
 .delete-btn:hover {
     background-color: #c82333;
 }
