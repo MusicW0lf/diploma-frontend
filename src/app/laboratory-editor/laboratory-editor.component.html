@@ -2,9 +2,7 @@
   <i class="fas fa-arrow-left"></i>
 </a>
 
-
 <main>
-  <!-- Модальне вікно -->
   <div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <h2>Rename the Project</h2>
@@ -23,28 +21,20 @@
         <button class="delete-btn" (click)="deleteProject()">Delete</button>
       </div>
     </div>
-    
+
     <form class="code-form">
       <label for="code">Write your Python code below:</label>
-      <textarea
-        id="code"
-        rows="12"
-        class="code-editor"
-        [(ngModel)]="pythonCode"
+      <ngx-monaco-editor 
+        [options]="editorOptions" 
+        [(ngModel)]="pythonCode" 
         name="code"
-        (keydown)="handleTab($event)"
-        (input)="updatePreview()"
-        placeholder="Write your Python code here..."
-      ></textarea>
+        class="code-editor">
+      </ngx-monaco-editor>
+
       <div class="button-group">
         <button type="button" class="btn btn-success run-button" (click)="executeCode()">Run Code</button>
       </div>
     </form>
-
-    <section class="preview-section">
-      <h2>Preview</h2>
-      <pre><code class="language-python" [innerHTML]="highlightedCode"></code></pre>
-    </section>
 
     <section class="output-section">
       <h2>Output</h2>
