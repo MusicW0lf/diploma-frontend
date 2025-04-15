@@ -14,17 +14,45 @@ declare var Prism: any;
 })
 export class LaboratoryEditorComponent implements AfterViewChecked {
   
+
+  ngOnInit(): void {
+    const projectId = this.route.snapshot.paramMap.get('id');
+    if (projectId) {
+      this.project.project_id = Number(projectId); // Convert to number
+      console.log('Loaded project ID:', this.project.project_id);
+    }
+    else {
+      this.router.navigate(['']);
+      return;
+    }
+  
+    this.http.get(`http://localhost:8000/project/${this.project.project_id}`, {
+      withCredentials: true
+    }).subscribe({
+      next: (project) => {
+        console.log('Project loaded:', project);
+        this.project = project;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.router.navigate(['']);
+        } else {
+          console.error('Error loading project:', err);
+        }
+      }
+    });
+  }
+
+
+
   goBack(): void {
     this.router.navigate(['']);
   }
 
-
-  pythonCode: string = '';
+  project: any = {};
   highlightedCode: string = '';
   output: string = '';
   error: string = '';
-  projectName: string = '';
-  projectId: string | null = null;
   isModalOpen: boolean = false;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
@@ -40,14 +68,43 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
   }
 
   //asdasdsadasdsad
-  renameProject() {
-    console.log('Renamed project to:', this.projectName);
-    this.closeModal();
+  renameProject(projectId: number, newName: string): void {
+    const body = { name: newName };
+  
+    this.http.patch(`http://localhost:8000/project/${projectId}/rename/`, body, {
+      withCredentials: true
+    }).subscribe({
+      next: () => {
+        console.log('Project renamed successfully');
+        // Optionally refresh the project or UI
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          alert('You are not allowed to rename this project.');
+        }  else {
+          console.error('Error renaming project:', err);
+        }
+      }
+    });
   }
 
   // adsadasdasds
-  deleteProject() {
-    console.log('Project deleted');
+  deleteProject(projectId: number): void {
+    this.http.delete(`http://localhost:8000/project/${projectId}/delete/`, {
+      withCredentials: true
+    }).subscribe({
+      next: () => {
+        console.log('Project deleted');
+        this.router.navigate(['/laboratory']); // Navigate home or refresh list
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          alert('You are not authorized to delete this project.');
+        } else {
+          console.error('Error deleting project:', err);
+        }
+      }
+    });
   }
 
   handleTab(event: KeyboardEvent) {
@@ -57,10 +114,10 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
       const start = textarea.selectionStart;
       const end = textarea.selectionEnd;
 
-      this.pythonCode =
-        this.pythonCode.substring(0, start) +
+      this.project.code =
+        this.project.code.substring(0, start) +
         '\t' +
-        this.pythonCode.substring(end);
+        this.project.code.substring(end);
 
       textarea.selectionStart = textarea.selectionEnd = start + 1;
     }
@@ -68,29 +125,33 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
 
   updatePreview() {
     setTimeout(() => {
-      if (typeof Prism !== 'undefined') {
-        this.highlightedCode = Prism.highlight(
-          this.pythonCode,
-          Prism.languages.python,
-          'python'
-        );
+      if (typeof Prism !== 'undefined' && this.project?.language) {
+        const language = this.project.language.toLowerCase();
+        if (Prism.languages[language]) {
+          console.log(language);
+  
+          // Highlight the code using Prism
+          const highlighted = Prism.highlight(
+            this.project.code,
+            Prism.languages[language],
+            language
+          );
+  
+          // Set the class dynamically on the code element, then set the highlighted code
+          this.highlightedCode = `<code class="language-${language}">${highlighted}</code>`;
+        } else {
+          console.warn(`Language "${language}" is not supported by Prism.`);
+          this.highlightedCode = `<code>${this.project.code}</code>`;
+        }
       }
     }, 0);
   }
+  
 
   ngAfterViewChecked() {
     Prism.highlightAll();
   }
-
-  ngOnInit(): void {
-    this.projectId = this.route.snapshot.paramMap.get('id');
-    console.log('Loaded project ID:', this.projectId);
-    if (this.projectId == null)
-    {
-      console.log("Fuck" + this.projectId)
-      //this.router.navigate(['']);
-    }
-  }
+  
   // asdasdaasdsa
   executeCode() {
     this.http

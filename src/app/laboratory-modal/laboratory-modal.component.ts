@@ -5,6 +5,8 @@ import { ModalService } from '../laboratory-modal/laboratory-modal-service';
 import { CommonModule } from '@angular/common';
 import { HttpClient} from '@angular/common/http';
 import { Route, Router } from '@angular/router';
+import { Language } from '../laboratory-language/laboratory-language.component';
+
 
 @Component({
   selector: 'app-laboratory-modal',
@@ -14,6 +16,13 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./laboratory-modal.component.css']
 })
 export class LaboratoryModalComponent implements OnDestroy {
+
+  private LanguageMapping: { [key: string]: string } = {
+    [Language.Python]: 'python',
+    [Language.JavaScript]: 'js',
+    [Language.Java]: 'java',
+  };
+
   selectedLanguage: string = '';
   projectName: string = '';
   isModalOpen: boolean = false;
@@ -37,7 +46,7 @@ export class LaboratoryModalComponent implements OnDestroy {
   createProject() {
     const data = {
       name: this.projectName,
-      language: this.selectedLanguage
+      language: this.LanguageMapping[this.selectedLanguage]
     };
   
     this.http.post<{ project_id: number }>('http://localhost:8000/create-project', data, { withCredentials: true })
@@ -54,8 +63,6 @@ export class LaboratoryModalComponent implements OnDestroy {
       });
   }
   
-
-  // Cleanup subscription on component destroy
   ngOnDestroy() {
     this.modalSubscription.unsubscribe();
   }

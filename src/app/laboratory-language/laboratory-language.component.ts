@@ -6,7 +6,6 @@ export enum Language {
   Python = 'Python',
   JavaScript = 'JavaScript',
   Java = 'Java',
-  // Add more languages as necessary
 }
 
 @Component({
@@ -17,9 +16,9 @@ export enum Language {
   styleUrls: ['./laboratory-language.component.css']
 })
 export class LaboratoryLanguageComponent {
-  selectedLanguage: string = '';
+  selectedLanguage: string = '';  // This will store the short version for the DB
   isDropdownOpen: boolean = false;
-  languages = Object.values(Language);  // Using the Language enum values for dropdown
+  languages = Object.values(Language);  // Display the full language names in the dropdown
 
   constructor(private modalService: ModalService) {}
 
@@ -27,20 +26,19 @@ export class LaboratoryLanguageComponent {
 
   setDropdownState(state: boolean) {
     if (state) {
-      // Якщо курсор знову зайшов на кнопку або меню — скасовуємо приховування
+      // If the cursor re-enters the button or menu, cancel the hiding
       clearTimeout(this.timeoutId);
       this.isDropdownOpen = true;
     } else {
-      // Затримка перед закриттям
+      // Delay before closing the dropdown
       this.timeoutId = setTimeout(() => {
         this.isDropdownOpen = false;
-      }, 150); // 0.15 секунди
+      }, 150); // 0.15 seconds
     }
-  }  
+  }
 
-  // When a language is selected, open the modal with the selected language
+  // When a language is selected, open the modal with the selected full language name
   selectLanguage(language: string) {
-    this.selectedLanguage = language;
-    this.modalService.openModal(language);  // Pass language to ModalService to open the modal
+    this.modalService.openModal(language);  // Pass the full language name to ModalService to open the modal
   }
 }

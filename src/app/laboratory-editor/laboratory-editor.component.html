@@ -8,8 +8,8 @@
   <div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <h2>Rename the Project</h2>
-      <input type="text" [(ngModel)]="projectName" placeholder="Enter new name" required />
-      <button class="btn btn-success" (click)="renameProject()">Rename</button>
+      <input type="text" [(ngModel)]="project.name" placeholder="Enter new name" required />
+      <button class="btn btn-success" (click)="renameProject(project.project_id, project.name)">Rename</button>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
         <button class="rename-btn" (click)="openModal()">Rename</button>
       </div>
       <div class="project-delete">
-        <button class="delete-btn" (click)="deleteProject()">Delete</button>
+        <button class="delete-btn" (click)="deleteProject(project.project_id)">Delete</button>
       </div>
     </div>
     
@@ -30,7 +30,7 @@
         id="code"
         rows="12"
         class="code-editor"
-        [(ngModel)]="pythonCode"
+        [(ngModel)]="project.code"
         name="code"
         (keydown)="handleTab($event)"
         (input)="updatePreview()"
@@ -43,8 +43,10 @@
 
     <section class="preview-section">
       <h2>Preview</h2>
-      <pre><code class="language-python" [innerHTML]="highlightedCode"></code></pre>
+      <pre><code [ngClass]="'language-' + project.language.toLowerCase()" [innerHTML]="highlightedCode"></code></pre>
     </section>
+    
+    
 
     <section class="output-section">
       <h2>Output</h2>
