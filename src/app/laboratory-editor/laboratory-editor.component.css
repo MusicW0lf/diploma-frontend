@@ -4,7 +4,31 @@ body {
     margin: 0;
 }
 
+.back-button {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    left: 20px;
+    background-color: #18a76d;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+}
+
+
 main {
+    color: #fff;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -87,9 +111,12 @@ main {
     color: #fff;
     position: relative;
 }
-
-.project-rename {
+.project-something{
     width: 100%;
+}
+
+.project-rename, .project-delete {
+    margin-right: 20px;
 }
 
 .project-textarea {
@@ -106,12 +133,9 @@ main {
     font-size: 1rem;
 }
 
-.project-delete {
-    margin-left: 20px;
-}
-
 
 .delete-btn, .rename-btn {
+    
     background-color: #dc3545;
     color: white;
     border: none;
@@ -123,11 +147,11 @@ main {
 }
 
 .rename-btn {
-    background-color: #aaa5a5;
+    background-color: #7d7a7a;
 }
 
 .rename-btn:hover {
-    background-color: #615d5d;
+    background-color: #3f3f3f;
 }
 .delete-btn:hover {
     background-color: #c82333;

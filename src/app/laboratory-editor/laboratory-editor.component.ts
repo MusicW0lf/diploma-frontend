@@ -13,6 +13,12 @@ declare var Prism: any;
   styleUrl: './laboratory-editor.component.css'
 })
 export class LaboratoryEditorComponent implements AfterViewChecked {
+  
+  goBack(): void {
+    this.router.navigate(['']);
+  }
+
+
   pythonCode: string = '';
   highlightedCode: string = '';
   output: string = '';

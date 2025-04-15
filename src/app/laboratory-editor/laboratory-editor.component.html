@@ -1,3 +1,8 @@
+<a (click)="goBack()" class="back-button">
+  <i class="fas fa-arrow-left"></i>
+</a>
+
+
 <main>
   <!-- Модальне вікно -->
   <div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
@@ -10,6 +15,7 @@
 
   <div class="main-container">
     <div class="top-bar">
+      <div class="project-something"></div>
       <div class="project-rename">
         <button class="rename-btn" (click)="openModal()">Rename</button>
       </div>
