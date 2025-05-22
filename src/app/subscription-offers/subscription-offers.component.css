@@ -33,9 +33,9 @@
     transition: 0.5s;
 }
 
-.subscription-card--tall {
+/* .subscription-card--tall {
     height: 420px;
-}
+} */
 
 .subscription-card:hover {
     transform: scale(1.02);
@@ -82,7 +82,10 @@
 }
 
 .subscription-card:not(:first-child) ul li:last-child::before {
-    content: "";
+    content: "✔";
+    color: #005b41;
+    position: absolute;
+    left: 0;
 }
 
 .buy-button {

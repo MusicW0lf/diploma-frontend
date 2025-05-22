@@ -85,11 +85,12 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id');
     console.log('Loaded project ID:', this.projectId);
-    if (this.projectId == null)
-    {
-      console.log("Fuck" + this.projectId)
-      //this.router.navigate(['']);
-    }
+    var code = this.route.snapshot.paramMap.get('pythonCode');
+    console.log(code);
+    if (code != null)
+      {
+        this.pythonCode = code;
+      }
   }
   // 
   executeCode() {
