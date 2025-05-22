@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { routes } from '../app.routes';
+
 declare var Prism: any;
 
 @Component({
@@ -21,7 +21,7 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
 
   pythonCode: string = '';
   highlightedCode: string = '';
-  output: string = '';
+  output: string | string[] = '';
   error: string = '';
   projectName: string = '';
   projectId: string | null = null;
@@ -91,20 +91,30 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
       //this.router.navigate(['']);
     }
   }
-  // asdasdaasdsa
+  // 
   executeCode() {
-    this.http
-      .post('/laboratory/execute/', {
-        project_id: '',
-      })
-      .subscribe(
-        (response: any) => {
-          this.output = response.stdout || 'No Output';
-          this.error = response.error || 'No Errors';
-        },
-        (err) => {
-          this.error = 'Error: ' + err.message;
-        }
-      );
+    const data = {
+      project_id: this.projectId,
+      code: this.pythonCode 
+    };
+  
+    this.http.post<{ stdout: string[] | string, error: string | null }>(
+      'http://localhost:8000/project/execute/', 
+      data,
+      { withCredentials: true }
+    )
+    .subscribe({
+      next: (response) => {
+        this.output = response.stdout ? response.stdout : 'No Output';
+        this.error = response.error ? response.error : 'No Errors';
+        console.log('Execution response:', response);
+      },
+      error: (error) => {
+        console.error('Error executing code:', error);
+        this.output = '';
+        this.error = 'Failed to execute code. Server error or unauthorized.';
+      }
+    });
   }
+  
 }
