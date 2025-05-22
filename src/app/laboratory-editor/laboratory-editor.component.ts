@@ -85,13 +85,42 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id');
     console.log('Loaded project ID:', this.projectId);
-    var code = this.route.snapshot.paramMap.get('pythonCode');
-    console.log(code);
-    if (code != null)
-      {
-        this.pythonCode = code;
-      }
+  
+    // Optional fallback from route param
+    const code = this.route.snapshot.paramMap.get('pythonCode');
+    if (code != null) {
+      this.pythonCode = code;
+    }
+  
+    if (this.projectId) {
+      this.http.get<{
+        project_id: number;
+        name: string;
+        language: string;
+        random_colors: boolean;
+        code: string;
+        create_date: string;
+        update_date: string;
+      }>(
+        `http://localhost:8000/project/${this.projectId}/`,
+        { withCredentials: true }
+      )
+      .subscribe({
+        next: (project) => {
+          console.log('Project loaded:', project);
+          this.pythonCode = project.code;
+          this.projectName = project.name;
+        },
+        error: (error) => {
+          console.error('Failed to load project:', error);
+          this.error = 'Unable to load project. Please check if it exists or if you are logged in.';
+        }
+      });
+    } else {
+      this.error = 'No project ID provided in route.';
+    }
   }
+  
   // 
   executeCode() {
     const data = {
