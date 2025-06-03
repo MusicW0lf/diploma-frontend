@@ -39,16 +39,53 @@ export class LaboratoryEditorComponent implements AfterViewChecked {
     document.body.style.overflow = '';
   }
 
-  //asdasdsadasdsad
-  renameProject() {
-    console.log('Renamed project to:', this.projectName);
-    this.closeModal();
+  renameProject(): void {
+    const newName = this.projectName;
+    const projectId = this.projectId;
+    console.log(newName)
+  
+    const url = `http://localhost:8000/project/${projectId}/rename/`;
+    const body = { new_name: newName };
+  
+    this.http.patch<{ success: boolean; new_name?: string; error?: string }>(
+      url,
+      body,
+      { withCredentials: true }
+    ).subscribe({
+      next: (response) => {
+        if (response.success) {
+          alert(`Name changed to "${newName}"`);
+          this.isModalOpen = false; // Optionally close modal
+        } else {
+          alert(`Rename failed: ${response.error || 'Unknown error'}`);
+        }
+      },
+      error: (err) => {
+        console.error('Error renaming project:', err);
+        alert('Request failed. Please try again later.');
+      }
+    });
   }
+  
+  
 
-  // adsadasdasds
-  deleteProject() {
-    console.log('Project deleted');
+  deleteProject(): void {
+    const url = `http://localhost:8000/project/${this.projectId}/delete/`;
+  
+    this.http.delete<{ detail: string }>(url, { withCredentials: true })
+      .subscribe({
+        next: (response) => {
+          alert(response.detail); 
+          this.router.navigate(['/laboratory']);
+        },
+        error: (err) => {
+          console.error('Error deleting project:', err);
+          const message = err.error?.detail || 'Failed to delete project';
+          alert(`Delete failed: ${message}`);
+        }
+      });
   }
+  
 
   handleTab(event: KeyboardEvent) {
     if (event.key === 'Tab') {
