@@ -1,8 +1,9 @@
 <div class="right-panel">
+
   <h3>Log In</h3>
   <p>Don’t have an account? <a (click)="navigateToAuth('signup')">Sign Up</a></p>
-
-  <div class="social-login">
+  
+  <!-- <div class="social-login">
       <button class="btn btn-outline-secondary" (click)="loginWithGoogle()">
           <i class="fab fa-google"></i> Google
       </button>
@@ -20,7 +21,7 @@
       </button>
   </div>
 
-  <p class="or">OR</p>
+  <p class="or">OR</p> -->
 
   <form (ngSubmit)="onSubmit()">
       <input type="email" [(ngModel)]="email" name="email" placeholder="Email" class="form-control" required>
